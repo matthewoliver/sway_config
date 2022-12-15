@@ -1,0 +1,78 @@
+# https://copr.fedorainfracloud.org/coprs/alebastr/sway-extras/
+sudo dnf copr enable alebastr/sway-extras
+
+# https://copr.fedorainfracloud.org/coprs/alebastr/swayr/
+sudo dnf copr enable alebastr/swayr
+
+# in ~/.config/sway/config add
+#swayr                                                                                                                                                                      
+                                                                                                                                                                             
+    exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug /home/matt/.cargo/bin/swayrd > /tmp/swayrd.log 2>&1                                                                       
+    bindsym --release Super_L exec swayr nop                                                                                                                                 
+                                                                                                                                                                             
+    bindsym $mod+Tab exec RUST_BACKTRACE=1 \                                                                                                                                 
+        swayr switch-window >> /tmp/swayr.log 2>&1                                                                                                                           
+    bindsym $mod+Delete exec env RUST_BACKTRACE=1 \                                                                                                                          
+        swayr quit-window >> /tmp/swayr.log 2>&1                                                                                                                             
+    bindsym $mod+` exec env RUST_BACKTRACE=1 \                                                                                                                               
+        swayr switch-to-urgent-or-lru-window >> /tmp/swayr.log 2>&1                                                                                                          
+    bindsym $mod+Next exec env RUST_BACKTRACE=1 \                                                                                                                            
+        swayr next-window all-workspaces >> /tmp/swayr.log 2>&2                                                                                                              
+    bindsym $mod+Prior exec env RUST_BACKTRACE=1 \                                                                                                                           
+        swayr prev-window all-workspaces >> /tmp/swayr.log 2>&2                                                                                                              
+    bindsym $mod+Shift+Space exec env RUST_BACKTRACE=1 \                                                                                                                     
+        swayr switch-workspace-or-window >> /tmp/swayr.log 2>&1                                                                                                              
+    bindsym $mod+c exec env RUST_BACKTRACE=1 \                                                                                                                               
+        swayr execute-swaymsg-command >> /tmp/swayr.log 2>&1                                                                                                                 
+    bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 \                                                                                                                         
+        swayr execute-swayr-command >> /tmp/swayr.log 2>&1
+
+
+
+
+/var/lib/flatpak/exports/bin/com.slack.Slack
+/var/lib/flatpak/exports/bin/im.riot.Riot
+/var/lib/flatpak/exports/bin/org.signal.Signal
+
+sudo dnf copr enable wef/wdisplays
+sudo dnf install wdisplays
+
+https://github.com/swaywm/sway/wiki/i3-Migration-Guide
+
+screenshot tool:
+
+sudo dnf unstall grimshot
+
+  grimshot copy area      <---- will allow you to select and area and is saved to your clipboard
+  
+  $ grimshot 
+  Usage:
+    grimshot [--notify] (copy|save) [active|screen|output|area|window] [FILE|-]
+    grimshot check
+    grimshot usage
+
+  Commands:
+    copy: Copy the screenshot data into the clipboard.
+    save: Save the screenshot to a regular file or '-' to pipe to STDOUT.
+    check: Verify if required tools are installed and exit.
+    usage: Show this message and exit.
+
+  Targets:
+    active: Currently active window.
+    screen: All visible outputs.
+    output: Currently active output.
+    area: Manually select a region.
+    window: Manually select a window.
+
+VPN and Network configuration
+---------------------------------
+Add:
+ exec_always nm-applet --indicator
+ 
+Needs to be with the --indicator for it to show up. Also this supports the SAML vpn stuff as it's using the patched NetworkManager-openconnect! 
+
+
+# JUST IN CASE
+
+DNS issues have been fixed. When I tested with the Cisco anyconnect CLI client for Linux, it connected, but injected a global internal nvidia DNS settings which remained after I disconnected. Which make further DNS attempts to nvidia fail. Clearing DNS caches didn't help, but running `sudo systemctl restart systemd-resolved.service` reset the global info.
+
