@@ -1,0 +1,28 @@
+output 'Dell Inc. DELL U3219Q BNNM413' {
+mode 3840x2160@60
+position 0,0
+scale 1.5
+alias $HOME_1
+}
+
+output 'KOGAN AUSTRALIA PTY LTD KAMN27F7TA 0000000000001' {
+mode 1920x1080@60
+position 2559,0
+alias $HOME_2
+}
+
+output 'Samsung Display Corp. 0x4165 Unknown' {
+mode 1920x1080@60
+position 2559,1080
+alias $INTERNAL
+}
+
+profile home {
+  output $HOME_1 enable
+  output $HOME_2 enable
+  output $INTERNAL disable
+}
+
+profile internal {
+  output $INTERNAL enable
+}

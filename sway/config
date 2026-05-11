@@ -24,26 +24,62 @@ exec ~/.bash_rc
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/default.png fill
+#output * bg /usr/share/backgrounds/default.png fill
+#output * bg ~/Pictures/wallpapers/abstract-geometry-hexagon-wallpaper-e8661d88a0008c18f06c015ef85254aa.jpg fill
+output * bg ~/Pictures/personal/20241004_125630.jpg fill
 
 exec_always ~/.config/sway/laptop_display.sh
 
 # desktop displays, see notes and https://github.com/swaywm/sway/wiki#Multihead
 #  and https://fedoramagazine.org/how-to-setup-multiple-monitors-in-sway/
 
+# 2.0 scale
+#output DP-4 scale 2
+#output DP-4 pos 0 0 res 3840x2160
+#output DP-5 pos 1920 0 res 1920x1080
+#output eDP-1 pos 1920 1080 res 1920x1080
+# 1.5 scale
+output DP-3 scale 1.5
+output DP-3 pos 0 0 res 3840x2160
+output DP-4 pos 2559 0 res 1920x1080
+output eDP-1 pos 2559 1080 res 1920x1080
+set $left_display DP-3
+set $right_display DP-4
+# Mum and Dad's
+#output HDMI-A-2 pos 1920 0 res 1920x1080
+#output eDP-1 pos 0 0 res 1920x1080
+# Lucy's desk
+#set $left_display HDMI-A-2
+#set $right_display eDP-1
+#output HDMI-A-2 scale 1.5
+#output HDMI-A-2 pos 0 0 res 3840x6160
+#output eDP-1 pos 2559 359 res 1920x1080
+# bec's office
+#output DP-6 pos 0 0 res 1920x1080
+#output DP-7 pos 1920 0 res 1920x1080
+#output eDP-1 pos 1920 1080 res 1920x1080
+#set $left_display DP-6
+#set $right_display DP-7
+
+# laptop + dell (bedroom)
+#output DP-6 scale 1.5
+#output eDP-1 pos 0 0 res 1920x1080
+#output DP-6 pos 1920 0 res 3840x2160
+#set $left_display DP-6
+#set $right_display DP-7
+
+
+#set $left_display eDP-1
+#set $right_display HDMI-A-2
+
 set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
 
-output DP-4 scale 1.5
-output DP-4 pos 0 0 res 3840x2160
-output DP-5 pos 2559 0 res 1920x1080
-output eDP-1 pos 2559 1080 res 1920x1080
-
-workspace 1 output DP-4
-workspace 2 output DP-5
-workspace 6 output DP-5
-workspace 10 output DP-5
+workspace 1 output $left_display
+workspace 6 output $left_display
+workspace 7 output $right_display
+workspace 10 output $right_display
 
 #
 # Example configuration:
@@ -56,13 +92,24 @@ workspace 10 output DP-5
 #
 # Example configuration:
 #
-exec swayidle -w timeout 300 'swaylock -f -i ~/.config/sway/safe_lock_50.png' \
-	timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-	before-sleep 'swaylock -f -i ~/.config/sway/safe_lock_50.png'
+#exec swayidle -w timeout 600 'swaylock -f -i ~/.config/sway/safe_lock_50.png' \
+#	timeout 1200 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+#	before-sleep 'swaylock -f -i ~/.config/sway/safe_lock_50.png'
+exec swayidle -w timeout 1200 'swaylock -f -i ~/.config/sway/banksafe-1.png' \
+	timeout 1800 'swaymsg "output * dpms off"' resume 'swaymsg reload' \
+	before-sleep 'swaylock -f -i ~/.config/sway/banksafe-2.png'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
+
+# Inhibit swayidle while a window is un full screen, so if in a meeting
+# fullscreen the window and it shouldn't go to sleep.
+for_window [class=".*"] inhibit_idle fullscreen
+for_window [app_id=".*"] inhibit_idle fullscreen
+
+# for_window [app_id="thunar" title="File Operation Progress"] inhibit_idle
+#  swaymsg -t get_tree to get class or id.
 
 ### Input configuration
 #
@@ -78,6 +125,19 @@ exec swayidle -w timeout 300 'swaylock -f -i ~/.config/sway/safe_lock_50.png' \
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+
+### Multimedia keys
+bindsym XF86MonBrightnessDown exec brightnessctl -d intel_backlight s 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl -d intel_backlight s 10%+
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -10%
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +10%
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+bindsym Print exec grimshot copy area
+bindsym Shift+Print exec grimshot copy active
+
 ### Key bindings
 #
 # Basics:
@@ -89,7 +149,8 @@ exec swayidle -w timeout 300 'swaylock -f -i ~/.config/sway/safe_lock_50.png' \
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    #bindsym $mod+d exec $menu
+    bindsym $mod+d exec "rofi -modi drun,run -show drun"
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -279,8 +340,11 @@ assign [class="thunderbird"] workspace number 10
 
 exec google-chrome
 exec_always nm-applet --indicator
+exec blueman-applet
 exec /var/lib/flatpak/exports/bin/com.slack.Slack
 exec /var/lib/flatpak/exports/bin/im.riot.Riot
 exec /var/lib/flatpak/exports/bin/org.signal.Signal
+exec kanshi
+exec dunst
 
 include /etc/sway/config.d/*

@@ -15,7 +15,7 @@
     "height": 30, 
 
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
+    "modules-left": ["sway/workspaces", "sway/mode", "wlr/taskbar"],
     "modules-center": ["clock"],
     "modules-right": ["network", "cpu", "memory", "pulseaudio", "battery", "tray"],
 
@@ -29,6 +29,14 @@
              "default": ""
          }
      },
+	   "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 16,
+        //"icon-theme": "Numix-Circle",
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close"
+    },
 
     "clock": {
         "format": " {:%a %d/%m/%Y - %T}",
@@ -36,7 +44,7 @@
     },
     
     "network": {
-        "format-wifi": " {essid} ({signalStrength}%)",
+        "format-wifi": "  {essid} ({signalStrength}%)",
         "format-ethernet": " {ifname} {bandwidthUpBits} {bandwidthDownBits}",
         "format-linked": " (No IP) ",
         "format-disconnected": "睊",
@@ -73,7 +81,7 @@
         },
     
     "battery": {
-        "bat": "BAT1",
+        // "bat": "BAT1",
         "states": {
             "warning": 30,
             "critical": 15
@@ -82,6 +90,10 @@
         "format-charging": "{capacity}% ",
         "format-icons": ["", "", "", "", "", "", "", "", "", ""],
         "tooltip-format": "{time}"
+        //"format": "{icon} {time} {capacity}%",
+        //"format-full": "{capacity}% 🔋",
+        //"format-charging": "{capacity}% ☇",
+        //"format-plugged": "{capacity}% 🔌"
     },
     
     

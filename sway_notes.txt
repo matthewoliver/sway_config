@@ -1,33 +1,47 @@
-# https://copr.fedorainfracloud.org/coprs/alebastr/sway-extras/
-sudo dnf copr enable alebastr/sway-extras
+Links: https://wiki.archlinux.org/title/sway
+
+Common commands:
+Mod+v: Split vertical
+Mod+h: Split horizontal
+Mod+s: Stacking layout
+Mod+w: Tabbed layout
+Mod+e: Toggle default (tiling)
+Mod+Shift+q: Close window
+
+HMM not sure I'm using sway-extras
+  # https://copr.fedorainfracloud.org/coprs/alebastr/sway-extras/
+   sudo dnf copr enable alebastr/sway-extras
+
+
 
 # https://copr.fedorainfracloud.org/coprs/alebastr/swayr/
 sudo dnf copr enable alebastr/swayr
 
 # in ~/.config/sway/config add
-#swayr                                                                                                                                                                      
-                                                                                                                                                                             
-    exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug /home/matt/.cargo/bin/swayrd > /tmp/swayrd.log 2>&1                                                                       
-    bindsym --release Super_L exec swayr nop                                                                                                                                 
-                                                                                                                                                                             
-    bindsym $mod+Tab exec RUST_BACKTRACE=1 \                                                                                                                                 
-        swayr switch-window >> /tmp/swayr.log 2>&1                                                                                                                           
-    bindsym $mod+Delete exec env RUST_BACKTRACE=1 \                                                                                                                          
-        swayr quit-window >> /tmp/swayr.log 2>&1                                                                                                                             
-    bindsym $mod+` exec env RUST_BACKTRACE=1 \                                                                                                                               
-        swayr switch-to-urgent-or-lru-window >> /tmp/swayr.log 2>&1                                                                                                          
-    bindsym $mod+Next exec env RUST_BACKTRACE=1 \                                                                                                                            
-        swayr next-window all-workspaces >> /tmp/swayr.log 2>&2                                                                                                              
-    bindsym $mod+Prior exec env RUST_BACKTRACE=1 \                                                                                                                           
-        swayr prev-window all-workspaces >> /tmp/swayr.log 2>&2                                                                                                              
-    bindsym $mod+Shift+Space exec env RUST_BACKTRACE=1 \                                                                                                                     
-        swayr switch-workspace-or-window >> /tmp/swayr.log 2>&1                                                                                                              
-    bindsym $mod+c exec env RUST_BACKTRACE=1 \                                                                                                                               
-        swayr execute-swaymsg-command >> /tmp/swayr.log 2>&1                                                                                                                 
-    bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 \                                                                                                                         
+#swayr
+
+    exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug /home/matt/.cargo/bin/swayrd > /tmp/swayrd.log 2>&1
+    bindsym --release Super_L exec swayr nop
+
+    bindsym $mod+Tab exec RUST_BACKTRACE=1 \
+        swayr switch-window >> /tmp/swayr.log 2>&1
+    bindsym $mod+Delete exec env RUST_BACKTRACE=1 \
+        swayr quit-window >> /tmp/swayr.log 2>&1
+    bindsym $mod+` exec env RUST_BACKTRACE=1 \
+        swayr switch-to-urgent-or-lru-window >> /tmp/swayr.log 2>&1
+    bindsym $mod+Next exec env RUST_BACKTRACE=1 \
+        swayr next-window all-workspaces >> /tmp/swayr.log 2>&2
+    bindsym $mod+Prior exec env RUST_BACKTRACE=1 \
+        swayr prev-window all-workspaces >> /tmp/swayr.log 2>&2
+    bindsym $mod+Shift+Space exec env RUST_BACKTRACE=1 \
+        swayr switch-workspace-or-window >> /tmp/swayr.log 2>&1
+    bindsym $mod+c exec env RUST_BACKTRACE=1 \
+        swayr execute-swaymsg-command >> /tmp/swayr.log 2>&1
+    bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 \
         swayr execute-swayr-command >> /tmp/swayr.log 2>&1
 
 
+https://github.com/milgra/sov might also make a good alt-tab/show all screens alt
 
 
 /var/lib/flatpak/exports/bin/com.slack.Slack
@@ -37,6 +51,14 @@ sudo dnf copr enable alebastr/swayr
 sudo dnf copr enable wef/wdisplays
 sudo dnf install wdisplays
 
+# might need to install waybar too.
+sudo dnf install waybar
+
+Gnome-keyring support (if you want to use it) see Major's page: https://major.io/2022/08/05/use-gnome-keyring-with-sway/
+
+lxappearance
+
+
 https://github.com/swaywm/sway/wiki/i3-Migration-Guide
 
 screenshot tool:
@@ -44,8 +66,8 @@ screenshot tool:
 sudo dnf unstall grimshot
 
   grimshot copy area      <---- will allow you to select and area and is saved to your clipboard
-  
-  $ grimshot 
+
+  $ grimshot
   Usage:
     grimshot [--notify] (copy|save) [active|screen|output|area|window] [FILE|-]
     grimshot check
@@ -68,8 +90,104 @@ VPN and Network configuration
 ---------------------------------
 Add:
  exec_always nm-applet --indicator
- 
-Needs to be with the --indicator for it to show up. Also this supports the SAML vpn stuff as it's using the patched NetworkManager-openconnect! 
+
+Needs to be with the --indicator for it to show up. Also this supports the SAML vpn stuff as it's using the patched NetworkManager-openconnect!
+
+
+Multimedia keys
+--------------------
+sudo dnf install playerctl brightnessctl
+
+bindsym XF86MonBrightnessDown exec brightnessctl -d intel_backlight s 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl -d intel_backlight s 10%+
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -10%
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +10%
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+# bindsym Print exec grimshot --notify save active
+bindsym Print exec grimshot copy area
+
+Background
+=============
+You can just set the output option in the config or use azote (an app):
+
+matt@matt-t15:~$ sudo dnf search azote
+[sudo] password for matt:
+Last metadata expiration check: 2:14:12 ago on Wed 22 Mar 2023 09:17:50 AM AEDT.
+==================================================================================================== Name Exactly Matched: azote =====================================================================================================
+azote.noarch : Wallpaper and color manager for Sway, i3 and some other WMs
+
+BUT you can also just use wallpaper and specify it in your sway config (see config)
+
+menu launcher
+==================
+If you want to use rofi instread of dmenu, then install install it. The sway config will be attempting to use it by default
+
+sudo dnf install rofi
+
+
+Display config with kanshi
+===========================
+
+Whatever defined outputs are detected, load that particular profile.
+
+sudo dnf install kanshi
+
+people on the internets run this in systemd. But I just exec it from the config, which just works.
+
+If you want to get the configuration of your current screens then you can use:
+
+   swaymsg -t get_outputs
+
+   Can also just use wdisplays to get your displays right
+
+
+Bluetooth
+==============
+install blueman
+
+sudo dnf install blueman
+
+exec blueman-applet
+
+
+Notifications
+=================
+dunst
+
+sudo dnf install dunst
+
+exec dunst
+
+Sway with nvidia driver
+============================
+Sway will fail to if your running the proietry nvidia drivers, as it's unsupported. So when you attempt to jump into sway it'll just die and go back to GDM.
+Looking at the journalctl it'll say it's unsupported and you need to add '--unsupported-gpu'. So let's do that:
+
+  $ cat /usr/share/wayland-sessions/sway.desktop
+  [Desktop Entry]
+  Name=Sway
+  Comment=An i3-compatible Wayland compositor
+  Exec=sway --unsupported-gpu
+  Type=Application
+
+
+
+
+vvv LAST RESORT VPN vvv
+VPN with SAML from commandline
+-------------------------------
+https://confluence.nvidia.com/display/~rrameshbabu/OpenConnect+VPN
+
+git clone https://gitlab.com/Binary-Eater/openconnect.git -b submission/support_secure_browsers
+cd openconnect
+./autogen.sh
+sudo dnf install libxml2-devel
+./configure
+make
+sudo ./openconnect --external-browser=/usr/bin/google-chrome-stable --external-browser-user=<UID/or system username here> ngvpn101.vpn.nvidia.com/SAML
 
 
 # JUST IN CASE
