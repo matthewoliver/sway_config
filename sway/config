@@ -255,7 +255,7 @@ bindsym Shift+Print exec grimshot copy active
 
 # lockscreen
 
-    bindsym $mod+Control+l exec swaylock -f -i ~/.config/sway/safe_lock_50.png
+    bindsym $mod+Control+l exec swaylock -f -i ~/.config/sway/banksafe-2.png
 
 # swayr
 
