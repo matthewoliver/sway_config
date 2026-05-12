@@ -29,7 +29,7 @@
              "default": ""
          }
      },
-	   "wlr/taskbar": {
+     "wlr/taskbar": {
         "format": "{icon}",
         "icon-size": 16,
         //"icon-theme": "Numix-Circle",
@@ -40,15 +40,15 @@
 
     "clock": {
         "format": " {:%a %d/%m/%Y - %T - %Z}",
-    	"interval": 5,
-		"timezones": [
-		"Australia/Melbourne",
-        "America/Los_Angeles",
-        "Europe/Berlin",
-        "Europe/London",
-		"UTC"
+        "interval": 5,
+        "timezones": [
+          "Australia/Melbourne",
+          "America/Los_Angeles",
+          "Europe/Berlin",
+          "Europe/London",
+          "UTC"
     ],
-		"tooltip-format": "{tz_list}\n<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
+    "tooltip-format": "{tz_list}\n<big>{:%Y %B}</big>\n<tt>{calendar}</tt>",
     "calendar": {
         "mode"          : "month",
         "mode-mon-col"  : 3,
@@ -63,7 +63,7 @@
         }
     }
     },
-    
+
     "network": {
         "format-wifi": "  {essid} ({signalStrength}%)",
         "format-ethernet": " {ifname} {bandwidthUpBits} {bandwidthDownBits}",
@@ -71,36 +71,36 @@
         "format-disconnected": "睊",
         "interval": 5
     },
-    
+
     "cpu": {
         "format": "{usage}% ",
         "interval": 5
     },
-    
+
     "memory": {
         "format": "{percentage}% ",
         "interval": 5
     },
-    
-        "pulseaudio": {
-            "format": "{icon} {volume}%",
-            "format-bluetooth": "{volume}% {icon} {format_source}",
-            "format-bluetooth-muted": "ﱝ {icon} {format_source}",
-            "format-muted": "ﱝ",
-            "format-source": "{volume}% ",
-            "format-source-muted": "",
-            "format-icons": {
-                "headphones": "",
-                "handsfree": "",
-                "headset": "",
-                "phone": "",
-                "portable": "",
-                "car": "",
-                "default": ["奄", "奔", "墳"]
-            },
-            "on-click": "pavucontrol"
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": "ﱝ {icon} {format_source}",
+        "format-muted": "ﱝ",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["奄", "奔", "墳"]
         },
-    
+        "on-click": "pavucontrol"
+    },
+
     "battery": {
         // "bat": "BAT1",
         "states": {
@@ -116,13 +116,12 @@
         //"format-charging": "{capacity}% ☇",
         //"format-plugged": "{capacity}% 🔌"
     },
-    
-    
+
     "tray": {
         // "icon-size": 21,
         "spacing": 10
     },
-    
+
     "custom/media": {
         "format": "{icon} {}",
         "return-type": "json",

@@ -39,6 +39,10 @@ window#waybar.hidden {
     color: #ffffff;
 }
 
+#workspaces button.visible {
+    background-color: #003626;
+}
+
 #mode {
     background-color: #64727D;
     border-bottom: 3px solid #ffffff;
