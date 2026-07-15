@@ -12,9 +12,22 @@ alias $HOME_2
 }
 
 output 'Samsung Display Corp. 0x4165 Unknown' {
-mode 1920x1080@60
+mode 3840x2400@60
 position 2559,1080
 alias $INTERNAL
+}
+
+output 'Samsung Electric Company S34CG50 HNBX600303' {
+mode 3440x1440@60
+position 0,0
+scale 1.5
+alias $HOLIDAY_1
+}
+
+output 'Acer Technologies Acer XB240H T1YSA0024202' {
+mode 1920x1080@60
+position 1920,0
+alias $ACER_PREDATOR
 }
 
 profile home {
@@ -25,4 +38,14 @@ profile home {
 
 profile internal {
   output $INTERNAL enable
+}
+
+profile holiday_house {
+  output $HOLIDAY_1 enable
+  output $INTERNAL mode 3840x2400@60 position 2293,0
+}
+
+profile acer_prededtor {
+  output $INTERNAL mode 3840x2400@60 position 0,0
+  output $ACER_PREDATOR enable
 }

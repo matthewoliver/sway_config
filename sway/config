@@ -337,10 +337,10 @@ bar {
 # Use `swaymsg -t get_tree` for info
 assign [class="Rhythmbox"] workspace number 10
 assign [class="google-chrome"] workspace number 1
-assign [class="Slack"] workspace number 6
-assign [class="Signal"] workspace number 6
-assign [class="Element"] workspace number 6
-assign [class="thunderbird"] workspace number 10
+assign [class="Slack"] workspace number 10
+assign [class="Signal"] workspace number 10
+assign [class="Element"] workspace number 10
+#assign [class="thunderbird"] workspace number 10
 #for_window [class="com.slack.Slack"] move to scratchpad
 
 exec google-chrome
@@ -349,7 +349,7 @@ exec blueman-applet
 exec /var/lib/flatpak/exports/bin/com.slack.Slack
 exec /var/lib/flatpak/exports/bin/im.riot.Riot
 exec /var/lib/flatpak/exports/bin/org.signal.Signal
-exec kanshi
+exec_always "systemctl --user restart kanshi.service"
 exec dunst
 
 include /etc/sway/config.d/*

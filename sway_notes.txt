@@ -161,6 +161,10 @@ sudo dnf install dunst
 
 exec dunst
 
+polkit
+================
+sudo dnf install lxpolkit
+
 Sway with nvidia driver
 ============================
 Sway will fail to if your running the proietry nvidia drivers, as it's unsupported. So when you attempt to jump into sway it'll just die and go back to GDM.
