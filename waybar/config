@@ -1,21 +1,22 @@
-//                               __                        
-//                              /\ \                       
-//  __  __  __     __     __  __\ \ \____     __     _ __  
+//                               __
+//                              /\ \
+//  __  __  __     __     __  __\ \ \____     __     _ __
 // /\ \/\ \/\ \  /'__`\  /\ \/\ \\ \ '__`\  /'__`\  /\`'__\
-// \ \ \_/ \_/ \/\ \L\.\_\ \ \_\ \\ \ \L\ \/\ \L\.\_\ \ \/ 
-//  \ \___x___/'\ \__/.\_\\/`____ \\ \_,__/\ \__/.\_\\ \_\ 
-//   \/__//__/   \/__/\/_/ `/___/  \\/___/  \/__/\/_/ \/_/ 
-//                            /\___/                       
-//                            \/__/   
+// \ \ \_/ \_/ \/\ \L\.\_\ \ \_\ \\ \ \L\ \/\ \L\.\_\ \ \/
+//  \ \___x___/'\ \__/.\_\\/`____ \\ \_,__/\ \__/.\_\\ \_\
+//   \/__//__/   \/__/\/_/ `/___/  \\/___/  \/__/\/_/ \/_/
+//                            /\___/
+//                            \/__/
 //
-// https://github.com/Jorgedeveloopzz                     
+// https://github.com/Jorgedeveloopzz
 
 {
-    "position": "top", 
-    "height": 30, 
+    "position": "top",
+    "height": 30,
 
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "wlr/taskbar"],
+    // "modules-left": ["sway/workspaces", "sway/mode", "wlr/taskbar"],
+    "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
     "modules-right": ["network", "cpu", "memory", "pulseaudio", "battery", "tray"],
 
@@ -66,7 +67,7 @@
 
     "network": {
         "format-wifi": "  {essid} ({signalStrength}%)",
-        "format-ethernet": " {ifname} {bandwidthUpBits} {bandwidthDownBits}",
+        "format-ethernet": "󰛳 {ifname} {bandwidthUpBits} {bandwidthDownBits}",
         "format-linked": " (No IP) ",
         "format-disconnected": "睊",
         "interval": 5
@@ -78,15 +79,15 @@
     },
 
     "memory": {
-        "format": "{percentage}% ",
+        "format": "{percentage}% 󰍛",
         "interval": 5
     },
 
     "pulseaudio": {
         "format": "{icon} {volume}%",
         "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": "ﱝ {icon} {format_source}",
-        "format-muted": "ﱝ",
+        "format-bluetooth-muted": "󰝟 {icon} {format_source}",
+        "format-muted": "󰝟",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
@@ -96,7 +97,7 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["奄", "奔", "墳"]
+            "default": [""]
         },
         "on-click": "pavucontrol"
     },
@@ -108,8 +109,8 @@
             "critical": 15
         },
         "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-icons": ["", "", "", "", "", "", "", "", "", ""],
+        "format-charging": "{capacity}% 󰂐",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
         "tooltip-format": "{time}"
         //"format": "{icon} {time} {capacity}%",
         //"format-full": "{capacity}% 🔋",

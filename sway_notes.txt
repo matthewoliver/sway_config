@@ -54,6 +54,15 @@ sudo dnf install wdisplays
 # might need to install waybar too.
 sudo dnf install waybar
 
+And to get the icons on waybar working you need the font awesome font and backup fonts (font awesome, cousine and nerd):
+
+sudo dnf install fontawesome-fonts-all google-cousine-fonts cascadia-mono-nf-fonts
+
+  List installed fonts with:
+    fc-list
+
+  * https://www.nerdfonts.com/cheat-sheet
+
 Gnome-keyring support (if you want to use it) see Major's page: https://major.io/2022/08/05/use-gnome-keyring-with-sway/
 
 lxappearance
