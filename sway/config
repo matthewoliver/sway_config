@@ -14,7 +14,9 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term gnome-terminal
+# set $term gnome-terminal
+# set $term foot
+set $term xfce4-terminal
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -28,7 +30,7 @@ exec ~/.bash_rc
 #output * bg ~/Pictures/wallpapers/abstract-geometry-hexagon-wallpaper-e8661d88a0008c18f06c015ef85254aa.jpg fill
 output * bg ~/Pictures/personal/20241004_125630.jpg fill
 
-exec_always ~/.config/sway/laptop_display.sh
+# exec_always ~/.config/sway/laptop_display.sh
 
 # desktop displays, see notes and https://github.com/swaywm/sway/wiki#Multihead
 #  and https://fedoramagazine.org/how-to-setup-multiple-monitors-in-sway/
@@ -39,12 +41,12 @@ exec_always ~/.config/sway/laptop_display.sh
 #output DP-5 pos 1920 0 res 1920x1080
 #output eDP-1 pos 1920 1080 res 1920x1080
 # 1.5 scale
-output DP-3 scale 1.5
-output DP-3 pos 0 0 res 3840x2160
-output DP-4 pos 2559 0 res 1920x1080
-output eDP-1 pos 2559 1080 res 1920x1080
-set $left_display DP-3
-set $right_display DP-4
+#output DP-3 scale 1.5
+#output DP-3 pos 0 0 res 3840x2160
+#output DP-4 pos 2559 0 res 1920x1080
+#output eDP-1 pos 2559 1080 res 1920x1080
+#set $left_display DP-3
+#set $right_display DP-4
 # Mum and Dad's
 #output HDMI-A-2 pos 1920 0 res 1920x1080
 #output eDP-1 pos 0 0 res 1920x1080
@@ -72,14 +74,14 @@ set $right_display DP-4
 #set $left_display eDP-1
 #set $right_display HDMI-A-2
 
-set $laptop eDP-1
-bindswitch --reload --locked lid:on output $laptop disable
-bindswitch --reload --locked lid:off output $laptop enable
+#set $laptop eDP-1
+#bindswitch --reload --locked lid:on output $laptop disable
+#bindswitch --reload --locked lid:off output $laptop enable
 
-workspace 1 output $left_display
-workspace 6 output $left_display
-workspace 7 output $right_display
-workspace 10 output $right_display
+#workspace 1 output $left_display
+#workspace 6 output $left_display
+#workspace 7 output $right_display
+#workspace 10 output $right_display
 
 #
 # Example configuration:
